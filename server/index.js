@@ -25,3 +25,5 @@ app.listen(SERVER_PORT, () => {
 })
 
 app.post('/auth/register', auth_controller.register)
+app.post('/auth/login', auth_controller.login)
+app.get('/auth/update', auth_controller.update)
