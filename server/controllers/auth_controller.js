@@ -22,8 +22,7 @@ module.exports = {
       hash,
       user_id: user_id[0].user_id
     }
-    console.log(session.user)
-    res.sendStatus(200)
+    res.status(200).send(true)
   },
   login: async (req, res) => {
     const db = req.app.get('db')
