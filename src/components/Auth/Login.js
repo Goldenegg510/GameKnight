@@ -26,18 +26,14 @@ class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault()
     const { loginUsername, loginPassword } = this.state
-    console.log(loginUsername, loginPassword)
     const user = await axios.post('/auth/login', {
       loginUsername, loginPassword
     })
-    console.log(user)
     const {username, user_id, authenticated, email} = user.data
-    console.log(authenticated)
     if(authenticated) {
       this.setState({
         username, user_id, authenticated, email
       })
-      console.log(this.state)
       this.props.updateUserDetails({username, user_id, authenticated, email})
       this.props.history.push('/group')
     }

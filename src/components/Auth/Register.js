@@ -60,4 +60,4 @@ function mapDispatchToProps() {
  return{ updateUserDetails}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps())(withRouter(Register))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register))

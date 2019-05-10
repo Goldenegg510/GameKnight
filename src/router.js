@@ -9,6 +9,6 @@ export default (
   <Switch>
     <Route exact path='/' component={Register} />
     <Route path='/login' component={Login} />
-    <Route path='/group-page' component={Group} />
+    <Route path='/group' component={Group} />
   </Switch>
 )

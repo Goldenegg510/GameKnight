@@ -5,6 +5,7 @@ const massive = require('massive')
 const session = require('express-session')
 const {SESSION_SECRET, CONNECTION_STRING, SERVER_PORT} = process.env
 const auth_controller = require('./controllers/auth_controller')
+const group_controller = require('./controllers/group_controller')
 
 app.use(express.json())
 app.use(session({
@@ -26,4 +27,4 @@ app.listen(SERVER_PORT, () => {
 
 app.post('/auth/register', auth_controller.register)
 app.post('/auth/login', auth_controller.login)
-app.get('/auth/update', auth_controller.update)
+app.get('/groups/:user_id', group_controller.getUserGroups)
