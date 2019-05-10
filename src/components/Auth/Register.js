@@ -8,6 +8,7 @@ class Register extends Component {
   constructor() {
     super()
     this.state = {
+      user_id:'',
       username: '',
       email: '',
       password: '',
@@ -24,13 +25,17 @@ class Register extends Component {
   handleSubmit = async (e) => {
     e.preventDefault()
     const { username, email, password } = this.state
-    const worked = await axios.post('/auth/register', { username, email, password })
-    if (worked) {
-      this.setState({
+    const user_id = await axios.post('/auth/register', { username, email, password })
+    if (user_id.data.user_id) {
+      await this.setState({
         username:username,
         email: email,
-        authenticated: true
+        authenticated: true,
+        user_id: user_id.data.user_id
       })
+      console.log(user_id)
+      await this.props.updateUserDetails({username:this.state.username, email:this.state.email, authenticated:this.state.authenticated, user_id:this.state.user_id})
+      console.log(this.props)
       this.props.history.push('/group-page')
     }
   }
@@ -41,7 +46,7 @@ class Register extends Component {
         <input onChange={this.handleChange} name='username' placeholder='username' />
         <input onChange={this.handleChange} name='email' placeholder='email' />
         <input onChange={this.handleChange} name='password' placeholder='password' />
-        <button onClick={this.handleSubmit} >Submit</button>
+        <button onClick={this.handleSubmit} >Register</button>
       </form>
     )
   }
@@ -55,4 +60,4 @@ function mapDispatchToProps() {
  return{ updateUserDetails}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps(withRouter(Register)))
+export default connect(mapStateToProps, mapDispatchToProps())(withRouter(Register))

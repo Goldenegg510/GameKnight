@@ -1,13 +1,17 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
  const Header = ({username, authenticated}) => {
+   let home = '/'
+   if(authenticated){
+    home = '/group'
+   }
     return(
   <nav>
     <span>Game Knight</span>
     <span>
-      <Link to='/'>Home</Link>
+      <Link to={home}>Home</Link>
       {authenticated 
       ?
       <Link to='/profile'>Welcome {username}</Link>

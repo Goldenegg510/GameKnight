@@ -1,2 +1,2 @@
 select * from users
-where username = ${username}
+where username = ${loginUsername}
