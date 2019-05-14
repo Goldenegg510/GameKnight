@@ -13,7 +13,6 @@ class Groups extends Component {
     }
   }
 componentDidMount(){
-  console.log(this.props.user_id)
   axios.get(`/groups/${this.props.user_id}`).then(res => (
     this.setState({
       groups: res.data
@@ -23,7 +22,7 @@ componentDidMount(){
   render() {
     return (
       <div>
-        {this.state.groups.map(current => (<Link to='/group' key={current.group_id}>{current.group_name}</Link>))}
+        {this.state.groups.map(current => (<Link to={`/group/${current.group_id}`} key={current.group_id}>{current.group_name}</Link>))}
       </div>
     )
   }

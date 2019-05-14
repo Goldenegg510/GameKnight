@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { updateUserDetails } from '../../redux/reducer'
+import { updateUserDetails } from '../redux/reducer'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
@@ -29,37 +29,38 @@ class Login extends Component {
     const user = await axios.post('/auth/login', {
       loginUsername, loginPassword
     })
-    const {username, user_id, authenticated, email} = user.data
-    if(authenticated) {
+    const { username, user_id, authenticated, email } = user.data
+    if (authenticated) {
       this.setState({
         username, user_id, authenticated, email
       })
-      this.props.updateUserDetails({username, user_id, authenticated, email})
-      this.props.history.push('/group')
+      this.props.updateUserDetails({ username, user_id, authenticated, email })
+      this.props.history.push('/groups')
     }
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} name='loginUsername' placeholder='username' />
         <input onChange={this.handleChange}
           name='loginPassword'
           placeholder='password' />
-        <button onClick={this.handleSubmit}>Login</button>
+        <button>Login</button>
       </form>
     )
   }
 }
 
-function mapStateToProps (state){
+function mapStateToProps(state) {
   return {
     username: state.username, authenticated: state.authenticated, email: state.email,
     user_id: state.user_id
   }
-  }
-  function mapDispatchToProps() {
-   return{ updateUserDetails}
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps())(withRouter(Login))
+}
+const mapDispatchToProps = {
+  updateUserDetails
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login))

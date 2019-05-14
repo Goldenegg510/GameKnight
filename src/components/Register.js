@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { updateUserDetails } from '../../redux/reducer'
+import { updateUserDetails } from '../redux/reducer'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
@@ -16,6 +16,10 @@ class Register extends Component {
     }
   }
 
+  componentDidMount(){
+    
+  }
+  
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value

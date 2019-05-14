@@ -59,5 +59,10 @@ module.exports = {
       newEmail = email
     }
     const worked = db.updateUserDetails({ newUsername, newPassword, hash, })
+  },
+  userData(req, res) {
+    const { user } = req.session;
+    if (user) return res.status(200).send({ authenticated: true, user });
+    else return res.sendStatus(401)
   }
 }
