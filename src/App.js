@@ -5,7 +5,6 @@ import router from './router'
 import store from './redux/store'
 
 
-import './App.css';
 
 function App() {
   return (
