@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { updateUserDetails } from '../redux/reducer'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import LoginHeader from './LoginHeader'
 
 class Login extends Component {
   constructor() {
@@ -41,13 +42,14 @@ class Login extends Component {
 
   render() {
     return (
+      <div><LoginHeader/>
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} name='loginUsername' placeholder='username' />
-        <input onChange={this.handleChange}
-          name='loginPassword'
-          placeholder='password' />
-        <button>Login</button>
-      </form>
+      <input onChange={this.handleChange} name='loginUsername' placeholder='username' />
+      <input onChange={this.handleChange}
+      name='loginPassword'
+      placeholder='password' />
+      <button>Login</button>
+      </form></div>
     )
   }
 }

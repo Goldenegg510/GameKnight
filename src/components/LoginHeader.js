@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { updateUserDetails } from '../redux/reducer'
-import { withRouter } from 'react-router-dom'
 import logo from '../img/logo.png'
-
-class Header extends Component {
+class LoginHeader extends Component {
   constructor() {
     super()
     this.state = {
@@ -17,21 +15,20 @@ class Header extends Component {
     }
   }
 
-  async componentDidMount() {
-    const result = await axios.get('/user_data')
-    if (result.data) {
-      const { authenticated } = result.data
-      const { user_id, username, email } = result.data.user
-      this.setState({
-        authenticated,
-        user_id,
-        username,
-        email
-      })
-      this.props.updateUserDetails(this.state)
-    } else {
-      this.props.history.push('/')
-    }
+  componentDidMount() {
+    axios.get('/user_data').then(res => {
+      if (res.data) {
+        const { authenticated } = res.data
+        const { user_id, username, email } = res.data.user
+        this.setState({
+          authenticated,
+          user_id,
+          username,
+          email
+        })
+        this.props.updateUserDetails(this.state)
+      }
+    })
   }
 
   render() {
@@ -45,14 +42,9 @@ class Header extends Component {
           <img className='logo' src={logo} alt='logo' />
           <div>Game Knight</div>
         </div>
-        <span className='navDiv'>
+        <span>
           <Link className='navButton' to={home}>Home</Link>
-          <Link className='profileButton' to='/profile'>
-          <div>
-            Welcome
-          </div> 
-          <div>{this.state.username}</div>
-          </Link>
+          <Link className='navButton' to='/login'>Login</Link>
         </span>
       </nav>
     )
@@ -68,4 +60,4 @@ const mapStateToProps = (reduxState) => {
   return { username, authenticated }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header))
+export default connect(mapStateToProps, mapDispatchToProps)(LoginHeader)

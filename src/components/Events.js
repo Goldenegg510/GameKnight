@@ -18,12 +18,13 @@ export default class Event extends Component {
       this.setState({
         events: res.data
       })
-      console.log(res.data)
     })
   }
-  getNewEvent = () => {
+
+  getNewEvent = async (new_event_id) => {
+   const newEvent = await axios.get(`/event/${new_event_id}`)
     this.setState({
-      newobj: {}
+      events: [...this.state.events, newEvent.data]
     })
   }
 

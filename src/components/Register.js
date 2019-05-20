@@ -3,21 +3,18 @@ import { withRouter } from 'react-router-dom'
 import { updateUserDetails } from '../redux/reducer'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import LoginHeader from './LoginHeader'
 
 class Register extends Component {
   constructor() {
     super()
     this.state = {
-      user_id:'',
+      user_id: '',
       username: '',
       email: '',
       password: '',
       authenticated: false
     }
-  }
-
-  componentDidMount(){
-    
   }
   
   handleChange = (e) => {
@@ -46,12 +43,13 @@ class Register extends Component {
 
   render() {
     return (
+      <div><LoginHeader />
       <form>
-        <input onChange={this.handleChange} name='username' placeholder='username' />
-        <input onChange={this.handleChange} name='email' placeholder='email' />
-        <input onChange={this.handleChange} name='password' placeholder='password' />
-        <button onClick={this.handleSubmit} >Register</button>
-      </form>
+      <input onChange={this.handleChange} name='username' placeholder='username' />
+      <input onChange={this.handleChange} name='email' placeholder='email' />
+      <input onChange={this.handleChange} name='password' placeholder='password' />
+      <button onClick={this.handleSubmit} >Register</button>
+      </form></div>
     )
   }
 }

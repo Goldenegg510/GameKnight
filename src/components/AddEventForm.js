@@ -14,7 +14,6 @@ export default class AddEventForm extends Component {
   }
 
   toggle = () => {
-    console.log(this.props.group_id)
     this.setState({
       addEventToggle: !this.state.addEventToggle
     })
@@ -30,15 +29,14 @@ export default class AddEventForm extends Component {
     e.preventDefault()
     const {event_date, time, place} = this.state
 
-    const worked = await axios.post('/add_event', {event_date, time, place, group_id:this.props.group_id})
-    console.log(worked)
+    const new_event_id = await axios.post('/add_event', {event_date, time, place, group_id:this.props.group_id})
     this.setState({
       event_date: '',
       location: '',
       addEventToggle: false,
       time: ''
     })
-    this.props.getNewEvent()
+    this.props.getNewEvent(new_event_id.data[0].event_id)
   }
 
   render() {

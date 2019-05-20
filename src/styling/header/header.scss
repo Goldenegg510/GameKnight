@@ -1,0 +1,54 @@
+$headerColor: rgb(245, 114, 27);
+$backgroundColor: rgb(255, 157, 0);
+$darkBlueColor: rgb(26, 93, 148);
+$brightBlueColor: rgb(0, 204, 255);
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 12vh;
+  background-color: $headerColor;
+}
+.logo{
+  height: 35px;
+  width: 35px;
+  background-color: $brightBlueColor;
+  border-radius: 50%;
+}
+.logo-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.navButton{
+  margin: 20px;
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: $brightBlueColor;
+  color: rgb(70, 70, 70);
+  padding: 3px 7px 3px 7px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.profileButton{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: $brightBlueColor;
+  color: rgb(70, 70, 70);
+  padding: 3px 7px 3px 7px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.navDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import Header from './Header'
 
 class Groups extends Component {
   constructor() {
@@ -17,11 +18,12 @@ componentDidMount(){
     this.setState({
       groups: res.data
     })
-  ))
+  )).catch(err => console.log(err))
 }
   render() {
     return (
       <div>
+        <Header />
         {this.state.groups.map(current => (<Link to={`/group/${current.group_id}`} key={current.group_id}>{current.group_name}</Link>))}
       </div>
     )
