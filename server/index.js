@@ -1,5 +1,4 @@
 require('dotenv').config()
-app.use( express.static( `${__dirname}/../build` ) );
 const express = require('express')
 const app = express()
 const massive = require('massive')
@@ -10,6 +9,7 @@ const group_controller = require('./controllers/group_controller')
 const event_controller = require('./controllers/event_controller')
 
 app.use(express.json())
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(session({
   secret: SESSION_SECRET,
   resave: false,
